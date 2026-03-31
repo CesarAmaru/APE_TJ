@@ -2,4 +2,5 @@
 #define tj_h
 
 
+void concatenarArqvs();
 #endif
