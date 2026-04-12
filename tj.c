@@ -3,7 +3,7 @@
 #include <string.h>
 #include "tj.h"
 
-
+// Funcao para concatenar os arquivos CSV em um unico arquivo de saida.
 void concatenarArqvs(){
     char *caminhos[] = {
     "src/teste_TRE-AC.csv", "src/teste_TRE-AL.csv", "src/teste_TRE-AM.csv",
