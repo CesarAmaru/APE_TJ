@@ -119,11 +119,11 @@ void gerarResumosDoArquivo(const char *nomeArquivoConcatenado) {
     Calculos tribunais[30] = {0}; 
     int numTribunais = 0;
     char buffer[2048];
-    int is_first_line = 1;
+    int primeira_linha = 1;
 
     while (fgets(buffer, sizeof(buffer), arquivo) != NULL) {
-        if (is_first_line) {
-            is_first_line = 0;
+        if (primeira_linha) {
+            primeira_linha = 0;
             continue; 
         }
 
