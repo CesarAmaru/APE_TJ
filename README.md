@@ -36,7 +36,7 @@ APE_TJ/
 │
 ├── main.c                   # Função principal do projeto
 ├── tj.h                     # Definições e estruturas
-├── concatenar.c             # Lógica de concatenação
+├── tj.c             # Lógica de concatenação
 ├── src/
 │   ├── teste_TRE-AC.csv
 │   ├── teste_TRE-SP.csv
