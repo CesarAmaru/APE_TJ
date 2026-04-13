@@ -334,16 +334,6 @@ xelatex refman.tex
 
 ---
 
-## Possíveis melhorias 
-- Entrada dinâmica de arquivos (via usuário ou diretório)
-- Interface interativa no terminal
-- Melhor tratamento de erros
-- validação de dados dos CSVs
-- Separação mais robusta em módulos
-- Geração de logs
-
----
-
 ## Tecnologias Utilizadas
 - Linguagem C
 - Biblioteca padrão:
@@ -353,7 +343,7 @@ xelatex refman.tex
 
 ---
 
-## Considerações Final 
+## Considerações Finais 
 Este projeto demonstra na prática:
 - Manipulação de arquivos em c
 - Organização de códigos em módulos
