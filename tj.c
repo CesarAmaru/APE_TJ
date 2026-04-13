@@ -55,7 +55,7 @@ void concatenarArqvs(){
     
     
 }
-
+// Funcao para gerar os calculos e resumos do tribunal de cada estado
 void gerarResumosDoArquivo(const char *nomeArquivoConcatenado) {
     FILE *arquivo = fopen(nomeArquivoConcatenado, "r");
     if (!arquivo) {
@@ -71,15 +71,13 @@ void gerarResumosDoArquivo(const char *nomeArquivoConcatenado) {
     while (fgets(buffer, sizeof(buffer), arquivo) != NULL) {
         if (is_first_line) {
             is_first_line = 0;
-            continue; // Pula a linha de cabeçalho
+            continue; 
         }
 
         char sigla_lida[20] = {0};
         Calculos linhaAtual = {0};
         
-        // =========================================================================
-        // PARSING EXATO DAS COLUNAS (Lê a Sigla e os 17 inteiros, ignora o resto)
-        // =========================================================================
+        
         int lidos = sscanf(buffer,
             "%[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],"
             "%d,%d,%*[^,],%d,%d,%*[^,],"
@@ -87,76 +85,68 @@ void gerarResumosDoArquivo(const char *nomeArquivoConcatenado) {
             "%d,%d,%d,%d,%*[^,],"
             "%d,%d,%d,%*[^,],"
             "%d,%d,%d",
-            sigla_lida,                      // 1. sigla_tribunal
-            &linhaAtual.casos_novos_2026,    // 11. casos_novos_2026
-            &linhaAtual.julgados_2026,       // 12. julgados_2026
-            // (ignora 13. prim_sent2026)
-            &linhaAtual.suspensos_2026,      // 14. suspensos_2026
-            &linhaAtual.dessobrestados_2026, // 15. dessobrestados_2026
-            // (ignora 16. cumprimento_meta1)
-            &linhaAtual.distm2_a,            // 17. distm2_a
-            &linhaAtual.julgm2_a,            // 18. julgm2_a
-            &linhaAtual.suspm2_a,            // 19. suspm2_a
-            // (ignora 20. cumprimento_meta2a)
-            &linhaAtual.distm2_ant,          // 21. distm2_ant
-            &linhaAtual.julgm2_ant,          // 22. julgm2_ant
-            &linhaAtual.suspm2_ant,          // 23. suspm2_ant
-            &linhaAtual.desom2_ant,          // 24. desom2_ant
-            // (ignora 25. cumprimento_meta2ant)
-            &linhaAtual.distm4_a,            // 26. distm4_a
-            &linhaAtual.julgm4_a,            // 27. julgm4_a
-            &linhaAtual.suspm4_a,            // 28. suspm4_a
-            // (ignora 29. cumprimento_meta4a)
-            &linhaAtual.distm4_b,            // 30. distm4_b
-            &linhaAtual.julgm4_b,            // 31. julgm4_b
-            &linhaAtual.suspm4_b             // 32. suspm4_b
-            // (a 33. cumprimento_meta4b é o fim da linha e fica ignorada)
+            sigla_lida,                     
+            &linhaAtual.casos_novos_2026,    
+            &linhaAtual.julgados_2026,       
+            &linhaAtual.suspensos_2026,      
+            &linhaAtual.dessobrestados_2026, 
+            &linhaAtual.distm2_a,            
+            &linhaAtual.julgm2_a,            
+            &linhaAtual.suspm2_a,            
+            &linhaAtual.distm2_ant,          
+            &linhaAtual.julgm2_ant,          
+            &linhaAtual.suspm2_ant,          
+            &linhaAtual.desom2_ant,         
+            &linhaAtual.distm4_a,            
+            &linhaAtual.julgm4_a,            
+            &linhaAtual.suspm4_a,        
+            &linhaAtual.distm4_b,            
+            &linhaAtual.julgm4_b,            
+            &linhaAtual.suspm4_b             
+            
         );
         
-        // Se a leitura for mal sucedida (ex: linha em branco no fim do arquivo) ele pula
+    
         if (lidos < 18) {
             continue; 
         }
 
-        // --- ARMAZENAMENTO DOS DADOS NO ARRAY DO TRIBUNAL ---
-        int index = -1;
+
+        int indc = -1;
         for (int i = 0; i < numTribunais; i++) {
             if (strcmp(tribunais[i].sigla_tribunal, sigla_lida) == 0) {
-                index = i;
+                indc = i;
                 break;
             }
         }
 
-        if (index == -1) {
-            index = numTribunais;
-            strcpy(tribunais[index].sigla_tribunal, sigla_lida);
+        if (indc == -1) {
+            indc = numTribunais;
+            strcpy(tribunais[indc].sigla_tribunal, sigla_lida);
             numTribunais++;
         }
 
-        tribunais[index].julgados_2026 += linhaAtual.julgados_2026;
-        tribunais[index].casos_novos_2026 += linhaAtual.casos_novos_2026;
-        tribunais[index].dessobrestados_2026 += linhaAtual.dessobrestados_2026;
-        tribunais[index].suspensos_2026 += linhaAtual.suspensos_2026;
-        tribunais[index].julgm2_a += linhaAtual.julgm2_a;
-        tribunais[index].distm2_a += linhaAtual.distm2_a;
-        tribunais[index].suspm2_a += linhaAtual.suspm2_a;
-        tribunais[index].julgm2_ant += linhaAtual.julgm2_ant;
-        tribunais[index].distm2_ant += linhaAtual.distm2_ant;
-        tribunais[index].suspm2_ant += linhaAtual.suspm2_ant;
-        tribunais[index].desom2_ant += linhaAtual.desom2_ant;
-        tribunais[index].julgm4_a += linhaAtual.julgm4_a;
-        tribunais[index].distm4_a += linhaAtual.distm4_a;
-        tribunais[index].suspm4_a += linhaAtual.suspm4_a;
-        tribunais[index].julgm4_b += linhaAtual.julgm4_b;
-        tribunais[index].distm4_b += linhaAtual.distm4_b;
-        tribunais[index].suspm4_b += linhaAtual.suspm4_b;
+        tribunais[indc].julgados_2026 += linhaAtual.julgados_2026;
+        tribunais[indc].casos_novos_2026 += linhaAtual.casos_novos_2026;
+        tribunais[indc].dessobrestados_2026 += linhaAtual.dessobrestados_2026;
+        tribunais[indc].suspensos_2026 += linhaAtual.suspensos_2026;
+        tribunais[indc].julgm2_a += linhaAtual.julgm2_a;
+        tribunais[indc].distm2_a += linhaAtual.distm2_a;
+        tribunais[indc].suspm2_a += linhaAtual.suspm2_a;
+        tribunais[indc].julgm2_ant += linhaAtual.julgm2_ant;
+        tribunais[indc].distm2_ant += linhaAtual.distm2_ant;
+        tribunais[indc].suspm2_ant += linhaAtual.suspm2_ant;
+        tribunais[indc].desom2_ant += linhaAtual.desom2_ant;
+        tribunais[indc].julgm4_a += linhaAtual.julgm4_a;
+        tribunais[indc].distm4_a += linhaAtual.distm4_a;
+        tribunais[indc].suspm4_a += linhaAtual.suspm4_a;
+        tribunais[indc].julgm4_b += linhaAtual.julgm4_b;
+        tribunais[indc].distm4_b += linhaAtual.distm4_b;
+        tribunais[indc].suspm4_b += linhaAtual.suspm4_b;
     }
     
     fclose(arquivo);
 
-    // =========================================================================
-    // ETAPA 2: CÁLCULOS E GERAÇÃO DOS ARQUIVOS NA PASTA "saida"
-    // =========================================================================
     for (int i = 0; i < numTribunais; i++) {
         float M1 = 0, M2A = 0, M2Ant = 0, M4A = 0, M4B = 0;
 
