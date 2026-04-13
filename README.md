@@ -49,7 +49,7 @@ APE_TJ/
 
 ---
 
-## Estrutura dos Módulos
+## Estrutura dos Modulos
 
 ### `main.c`
 Responsável por iniciar o programa. 
@@ -334,17 +334,7 @@ xelatex refman.tex
 
 ---
 
-## Possíveis melhorias 
-- Entrada dinâmica de arquivos (via usuário ou diretório)
-- Interface interativa no terminal
-- Melhor tratamento de erros
-- validação de dados dos CSVs
-- Separação mais robusta em módulos
-- Geração de logs
-
----
-
-## Tecnologias utilizadas
+## Tecnologias Utilizadas
 - Linguagem C
 - Biblioteca padrão:
   - `<stdio.h>`
@@ -372,5 +362,5 @@ Este projeto demonstra na prática:
 
 ---
 
-## Licença 
+## Licença
 Projeto desenvolvido para fins acadêmicos, podendo ser utilizado como base para estudos e aprimoramentos em programação na linguagem C.
