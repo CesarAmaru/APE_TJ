@@ -5,6 +5,7 @@
 int main() {
    
    concatenarArqvs();
+   gerarResumosDoArquivo("arqConcatenado.csv");
 
     return 0;
 }
