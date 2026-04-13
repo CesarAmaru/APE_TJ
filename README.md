@@ -353,7 +353,7 @@ xelatex refman.tex
 
 ---
 
-## Considerações Finais 
+## Considerações Final 
 Este projeto demonstra na prática:
 - Manipulação de arquivos em c
 - Organização de códigos em módulos
