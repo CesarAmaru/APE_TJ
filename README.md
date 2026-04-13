@@ -344,7 +344,7 @@ xelatex refman.tex
 
 ---
 
-## Tecnologias utilizadas
+## Tecnologias Utilizadas
 - Linguagem C
 - Biblioteca padrão:
   - `<stdio.h>`
