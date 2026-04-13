@@ -10,7 +10,7 @@ O programa percorre diversos arquivos contendo dados (como registros de tribunai
 ## Objetivos do projeto
 
 - Aplicar conceitos de manipulação de arquivos em C;
-- Trabalhar comleitura e escrita em arquivos CSV;
+- Trabalhar com leitura e escrita em arquivos CSV;
 - Implementar processamento sequencial de múltiplas fontes de dados;
 - Evitar duplicação de informações;
 - Organizar dados de diferentes estados em um único arquivo;
