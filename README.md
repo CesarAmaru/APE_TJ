@@ -49,7 +49,7 @@ APE_TJ/
 
 ---
 
-## Estrutura dos Módulos
+## Estrutura dos Modulos
 
 ### `main.c`
 Responsável por iniciar o programa. 
