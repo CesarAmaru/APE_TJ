@@ -372,5 +372,5 @@ Este projeto demonstra na prática:
 
 ---
 
-## Licença
+## Licenças
 Projeto desenvolvido para fins acadêmicos, podendo ser utilizado como base para estudos e aprimoramentos em programação na linguagem C.
