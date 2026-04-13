@@ -55,6 +55,59 @@ void concatenarArqvs(){
     
     
 }
+
+// Funcao para gerar CSVs distinto com base no municiopio
+void gerarCsvPorMunicipio(const char *nomeBusca) {
+    FILE *base = fopen("arqConcatenado.csv", "r");
+    if (!base) {
+        printf("\nErro ao abrir a base de dados!");
+        return;
+    }
+ 
+    char nomeArquivoSaida[150];
+    sprintf(nomeArquivoSaida, "municipioCSV/%s.csv", nomeBusca);
+ 
+    FILE *saida = fopen(nomeArquivoSaida, "w");
+    if (!saida) {
+        printf("\nErro ao criar arquivo de saida!");
+        fclose(base);
+        return;
+    }
+ 
+    char linha[2048];
+    char copiaLinha[2048];
+    int encontrado = 0;
+ 
+    if (fgets(linha, sizeof(linha), base)) {
+        fputs(linha, saida);
+    }
+ 
+    while (fgets(linha, sizeof(linha), base)) {
+        strcpy(copiaLinha, linha);
+ 
+        char *campo = strtok(copiaLinha, ",");
+        int i;
+        for (i = 0; i < 5 && campo != NULL; i++) {
+            campo = strtok(NULL, ",");
+        }
+ 
+        if (campo != NULL && strcmp(campo, nomeBusca) == 0) {
+            fputs(linha, saida);
+            encontrado = 1;
+        }
+    }
+ 
+    fclose(base);
+    fclose(saida);
+ 
+    if (encontrado) {
+        printf("\nArquivo '%s' gerado com sucesso!", nomeArquivoSaida);
+    } else {
+        printf("\nNenhuma ocorrencia encontrada para '%s'.", nomeBusca);
+        remove(nomeArquivoSaida);
+    }
+}
+
 // Funcao para gerar os calculos e resumos do tribunal de cada estado
 void gerarResumosDoArquivo(const char *nomeArquivoConcatenado) {
     FILE *arquivo = fopen(nomeArquivoConcatenado, "r");
@@ -166,7 +219,7 @@ void gerarResumosDoArquivo(const char *nomeArquivoConcatenado) {
             M4B = (float)tribunais[i].julgm4_b / (tribunais[i].distm4_b - tribunais[i].suspm4_b) * 100;
 
         char caminhoResumo[100];
-        sprintf(caminhoResumo, "saida/resumo_%s.csv", tribunais[i].sigla_tribunal);
+        sprintf(caminhoResumo, "calc-resum/resumo_%s.csv", tribunais[i].sigla_tribunal);
         
         FILE *resumoLocal = fopen(caminhoResumo, "w");
         if (resumoLocal) {

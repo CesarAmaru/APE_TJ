@@ -30,5 +30,9 @@ typedef struct {
 // Realiza a leitura dos arquivos e a concatenação.
 void concatenarArqvs();
 
+// Funcao para gerar CSVs distinto com base no municiopio
+void gerarCsvPorMunicipio(const char *nomeBusca);
+
+// Funcao para gerar os calculos e resumos do tribunal de cada estado
 void gerarResumosDoArquivo(const char *nomeArquivoConcatenado);
 #endif
