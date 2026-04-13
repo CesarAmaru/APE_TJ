@@ -34,10 +34,10 @@ O programa percorre diversos arquivos contendo dados (como registros de tribunai
 ```
 APE_TJ/
 │
+├── main.c                   # Função principal do projeto
+├── tj.h                     # Definições e estruturas
+├── concatenar.c             # Lógica de concatenação
 ├── src/
-│   ├── main.c               # Função principal do projeto
-│   ├── tj.h                 # Definições e estruturas
-│   ├── concatenar.c         # Lógica de concatenação
 │   ├── teste_TRE-AC.csv
 │   ├── teste_TRE-SP.csv
 │   └── ... (demais arquivos CSV)
