@@ -57,6 +57,27 @@ void concatenarArqvs(){
 }
 
 // Funcao para gerar CSVs distinto com base no municiopio
+int pegarCampo(const char *linha, int alvo, char *destino, int tamanho) {
+    const char *p = linha;
+    int col = 0;
+ 
+    /* Avança até a coluna desejada */
+    while (col < alvo) {
+        while (*p != ',' && *p != '\0') p++;
+        if (*p == '\0') return 0;
+        p++; /* pula a vírgula */
+        col++;
+    }
+ 
+    int i = 0;
+    while (*p != ',' && *p != '\n' && *p != '\r' && *p != '\0' && i < tamanho - 1) {
+        destino[i++] = *p++;
+    }
+    destino[i] = '\0';
+ 
+    return 1;
+}
+ 
 void gerarCsvPorMunicipio(const char *nomeBusca) {
     FILE *base = fopen("arqConcatenado.csv", "r");
     if (!base) {
@@ -75,7 +96,7 @@ void gerarCsvPorMunicipio(const char *nomeBusca) {
     }
  
     char linha[2048];
-    char copiaLinha[2048];
+    char campo[256];
     int encontrado = 0;
  
     if (fgets(linha, sizeof(linha), base)) {
@@ -83,17 +104,12 @@ void gerarCsvPorMunicipio(const char *nomeBusca) {
     }
  
     while (fgets(linha, sizeof(linha), base)) {
-        strcpy(copiaLinha, linha);
- 
-        char *campo = strtok(copiaLinha, ",");
-        int i;
-        for (i = 0; i < 5 && campo != NULL; i++) {
-            campo = strtok(NULL, ",");
-        }
- 
-        if (campo != NULL && strcmp(campo, nomeBusca) == 0) {
-            fputs(linha, saida);
-            encontrado = 1;
+
+        if (pegarCampo(linha, 5, campo, sizeof(campo))) {
+            if (strcmp(campo, nomeBusca) == 0) {
+                fputs(linha, saida);
+                encontrado = 1;
+            }
         }
     }
  

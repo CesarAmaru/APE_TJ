@@ -32,6 +32,7 @@ void concatenarArqvs();
 
 // Funcao para gerar CSVs distinto com base no municiopio
 void gerarCsvPorMunicipio(const char *nomeBusca);
+int pegarCampo(const char *linha, int alvo, char *destino, int tamanho);
 
 // Funcao para gerar os calculos e resumos do tribunal de cada estado
 void gerarResumosDoArquivo(const char *nomeArquivoConcatenado);

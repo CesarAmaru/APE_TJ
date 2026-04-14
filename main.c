@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "tj.h"
 
 int main() {
     int opcao;
     char municipio[100];
+    char lixo[10];
 
     concatenarArqvs();
     gerarResumosDoArquivo("arqConcatenado.csv");
@@ -15,11 +17,14 @@ int main() {
         printf("\n0 - Encerrar programa");
         printf("\nOpcao: ");
         scanf("%d", &opcao);
-
+ 
         switch (opcao) {
             case 1:
-                 printf("Digite o nome do municipio (Dentro de aspas \"\"): ");
-                scanf("%99s", municipio);
+                
+                fgets(lixo, sizeof(lixo), stdin); 
+                printf("Digite o nome do municipio: ");
+                fgets(municipio, sizeof(municipio), stdin);
+                municipio[strcspn(municipio, "\n")] = '\0'; 
                 gerarCsvPorMunicipio(municipio);
                 break;
             case 0:
@@ -27,8 +32,8 @@ int main() {
                 break;
             default:
                 printf("\nOpcao invalida! Tente novamente.");
-            }
-        } while (opcao != 0);
+        }
+    } while (opcao != 0);
 
     return 0;
 }
