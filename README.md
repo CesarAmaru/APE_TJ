@@ -10,7 +10,7 @@ O programa percorre diversos arquivos contendo dados (como registros de tribunai
 ## Objetivos do projeto
 
 - Aplicar conceitos de manipulação de arquivos em C;
-- Trabalhar comleitura e escrita em arquivos CSV;
+- Trabalhar com leitura e escrita em arquivos CSV;
 - Implementar processamento sequencial de múltiplas fontes de dados;
 - Evitar duplicação de informações;
 - Organizar dados de diferentes estados em um único arquivo;
@@ -34,16 +34,20 @@ O programa percorre diversos arquivos contendo dados (como registros de tribunai
 ```
 APE_TJ/
 │
+├── main.c                   # Função principal do projeto
+├── tj.h                     # Definições e estruturas
+├── tj.c                     # Lógica de concatenação
 ├── src/
-│   ├── main.c               # Função principal do projeto
-│   ├── tj.h                 # Definições e estruturas
-│   ├── concatenar.c         # Lógica de concatenação
 │   ├── teste_TRE-AC.csv
 │   ├── teste_TRE-SP.csv
 │   └── ... (demais arquivos CSV)
 │
-├── arqConcatenado.csv       # Arquivo gerado pelo programa
+├── municipioCSV/
+│   ├── MACAPA.csv
+│   └── ... (demais arquivos CSV)
 │
+├── arqConcatenado.csv       # Arquivo gerado pelo programa
+├── calc-resum
 └── README.md
 ```
 
@@ -354,9 +358,7 @@ Este projeto demonstra na prática:
 ## Autores
 - Carlos Eduardo Estrela
 - Cesar Amaru
-- Gabriel Alves
 - Guilherme Romaniuk
-- Guilherme Alfeu
 - Thyago Oliveira
 - Yan Gabriel Pereira
 
