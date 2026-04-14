@@ -36,14 +36,18 @@ APE_TJ/
 │
 ├── main.c                   # Função principal do projeto
 ├── tj.h                     # Definições e estruturas
-├── tj.c             # Lógica de concatenação
+├── tj.c                     # Lógica de concatenação
 ├── src/
 │   ├── teste_TRE-AC.csv
 │   ├── teste_TRE-SP.csv
 │   └── ... (demais arquivos CSV)
 │
-├── arqConcatenado.csv       # Arquivo gerado pelo programa
+├── municipioCSV/
+│   ├── MACAPA.csv
+│   └── ... (demais arquivos CSV)
 │
+├── arqConcatenado.csv       # Arquivo gerado pelo programa
+├── calc-resum
 └── README.md
 ```
 
@@ -354,9 +358,7 @@ Este projeto demonstra na prática:
 ## Autores
 - Carlos Eduardo Estrela
 - Cesar Amaru
-- Gabriel Alves
 - Guilherme Romaniuk
-- Guilherme Alfeu
 - Thyago Oliveira
 - Yan Gabriel Pereira
 
