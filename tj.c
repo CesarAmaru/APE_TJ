@@ -48,23 +48,12 @@ void concatenarArqvs(){
 
         fclose(entrada);
         
+        
+        
     }
     fclose(saida);
     
-}
 
 
-void calculo(char *arqConq){
-    FILE *arqConcatenado = fopen(arqConq, "r");
-    if (!arqConcatenado)
-    {
-        printf("FALHA AO ABRIR ARQUIVO CONCATERNADO!"); exit(1);
-    }
-
-    char linha[256];
-    int suspm4_b = 0, julgm4_b = 0, distm4_b = 0, suspm4_a = 0, julgm4_a = 0, distm4_a = 0, suspm2_ant = 0, julgm2_ant = 0, distm2_ant = 0, suspm2_a = 0, julgm2_a = 0, distm2_a = 0, dessobrestados_2026 = 0, suspensos_2026 = 0, julgados_2026 = 0, casos_novos_2026 = 0;
-
-    fgets(linha, sizeof(linha), arqConcatenado);
-    
     
 }

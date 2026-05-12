@@ -3,5 +3,4 @@
 
 
 void concatenarArqvs();
-void calculo(char *arqConq);
 #endif
